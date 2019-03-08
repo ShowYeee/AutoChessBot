@@ -127,7 +127,7 @@ async def rank(ctx , steamIDs):
 
     await ctx.send("查詢中，請稍等數秒...") 
     
-    if(steam != null):
+    if(steam == null):
         discordID = ctx.author.id
         db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
         cursor = db.cursor()
