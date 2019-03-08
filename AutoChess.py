@@ -27,7 +27,6 @@ ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三�
 class Info:
     def __init__(self,steamID):
         #取得GET
-        r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
         res  = requests.get('http://www.autochess-stats.com/backend/api/dacprofiles/'+ steamID)
         
         ress = res.text
@@ -93,33 +92,6 @@ async def on_ready():
     activitys = discord.Game(name = "刀塔自走棋")
     await bot.change_presence(activity = activitys)
 
-@bot.command()
-async def info(ctx , steamID):
-    try:
-        await ctx.send("查詢中，請稍等數秒...")
-        discordID = ctx.author.id
-        theinfo = Info(steamID)
-        x = '- '
-        steamurl = 'http://steamcommunity.com/profiles/' + steamID
-        mysteam = "["+ theinfo.name +"]("+steamurl+")"
-        embed = discord.Embed(title = ctx.author.name + " 排位查詢", description = "Steam名稱: " + mysteam, color=0xff0000) 
-        embed.set_author(name="刀塔自走棋資料速查", icon_url="http://i.imgur.com/rlx1Kb2.png")
-        embed.set_thumbnail(url = theinfo.steamicon)
-        embed.add_field(name= '⁕ 目前牌位',  value = x + theinfo.rank , inline=False)
-        embed.add_field(name= '⁕ 遊玩場次',  value = x +  str(theinfo.matches), inline=False)
-        embed.add_field(name= '⁕ 糖果數量',  value = x +  str(theinfo.candy), inline=False)
-        embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
-        await ctx.send(embed=embed)  
-        theinfo.chart(steamID)
-        file = discord.File(steamID + '.png', filename = steamID + '.png')
-        print(file)
-        await ctx.send("", file=file) 
-        print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")
-
-    except Exception  as n:
-        await ctx.send("查無此人，請確定SteamID64")
-        print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
-
     
 
 @bot.command()
@@ -160,6 +132,7 @@ async def rank(ctx , steamID=None):
     except IndexError as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(-d.help)")
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
+        r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
         
 
     
