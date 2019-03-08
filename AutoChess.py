@@ -112,6 +112,7 @@ async def info(ctx , steamID):
         await ctx.send(embed=embed)  
         theinfo.chart(steamID)
         file = discord.File(steamID + '.png', filename = steamID + '.png')
+        print(file)
         await ctx.send("", file=file) 
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")
 
