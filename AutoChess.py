@@ -111,7 +111,7 @@ async def info(ctx , steamID):
         embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
         await ctx.send(embed=embed)  
         theinfo.chart(steamID)
-        file = discord.File('D://' + steamID + '.png', filename = steamID + '.png')
+        file = discord.File(steamID + '.png', filename = steamID + '.png')
         await ctx.send("", file=file) 
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")
 
