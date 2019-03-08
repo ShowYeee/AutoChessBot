@@ -17,7 +17,6 @@ from boto.s3.connection import S3Connection
 
 bot = commands.Bot(command_prefix='')
 bot.remove_command('help')
-db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
 ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三段','♙ 士兵四段','♙ 士兵五段','♙ 士兵六段','♙ 士兵七段','♙ 士兵八段','♙ 士兵九段',
                     '♘ 騎士一段','♘ 騎士二段','♘ 騎士三段','♘ 騎士四段','♘ 騎士五段','♘ 騎士六段','♘ 騎士七段','♘ 騎士八段','♘ 騎士九段',
                     '♗ 主教一段','♗ 主教二段','♗ 主教三段','♗ 主教四段','♗ 主教五段','♗ 主教六段','♗ 主教七段','♗ 主教八段','♗ 主教九段',
@@ -128,6 +127,7 @@ async def rank(ctx):
     try:
         await ctx.send("查詢中，請稍等數秒...")      
         discordID = ctx.author.id
+        db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
         cursor = db.cursor()
         sql = 'SELECT steamID FROM player WHERE discordID = "%s";'
         cursor.execute(sql,discordID)  
@@ -162,7 +162,7 @@ async def rank(ctx):
 async def bind(ctx , steamIDs):
 
     if(len(steamIDs) == 17): 
-        
+        db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
         cursor = db.cursor()
 
         discordID = ctx.author.id
