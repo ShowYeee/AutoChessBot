@@ -150,9 +150,9 @@ async def rank(ctx):
         await ctx.send(embed=embed)
         theinfo.chart(steamID)
         file = discord.File(steamID + '.png', filename = steamID + '.png')
+        print(file)
         await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")   
-
     except IndexError as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(-d.help)")
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
