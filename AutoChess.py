@@ -193,7 +193,7 @@ async def Help(ctx):
 
     await ctx.send(embed=embed)
 
-bot.run('NTUxNDk3MTgzOTE3MjQ0NDYw.D1x17g.K5lbg5gz7QClpnpwb7NIq2WD0gY')
+bot.run(os.environ['bot_token'])
 
 
 
