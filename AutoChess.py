@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import interpolate
 from scipy.interpolate import interp1d
+import os
 
 
 bot = commands.Bot(command_prefix='')
