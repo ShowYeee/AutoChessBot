@@ -15,6 +15,13 @@ from scipy.interpolate import interp1d
 
 bot = commands.Bot(command_prefix='')
 bot.remove_command('help')
+db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db='os.environ['db']', charset='utf8')
+ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三段','♙ 士兵四段','♙ 士兵五段','♙ 士兵六段','♙ 士兵七段','♙ 士兵八段','♙ 士兵九段',
+                    '♘ 騎士一段','♘ 騎士二段','♘ 騎士三段','♘ 騎士四段','♘ 騎士五段','♘ 騎士六段','♘ 騎士七段','♘ 騎士八段','♘ 騎士九段',
+                    '♗ 主教一段','♗ 主教二段','♗ 主教三段','♗ 主教四段','♗ 主教五段','♗ 主教六段','♗ 主教七段','♗ 主教八段','♗ 主教九段',
+                    '♖ 堡壘一段','♖ 堡壘二段','♖ 堡壘三段','♖ 堡壘四段','♖ 堡壘五段','♖ 堡壘六段','♖ 堡壘七段','♖ 堡壘八段','♖ 堡壘九段',
+                    '♕ 國王','♔ 皇後']
+
 
 class Info:
     def __init__(self,steamID):
@@ -29,11 +36,6 @@ class Info:
 
         #顯示
         self.name = jd['personaName']
-        ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三段','♙ 士兵四段','♙ 士兵五段','♙ 士兵六段','♙ 士兵七段','♙ 士兵八段','♙ 士兵九段',
-                    '♘ 騎士一段','♘ 騎士二段','♘ 騎士三段','♘ 騎士四段','♘ 騎士五段','♘ 騎士六段','♘ 騎士七段','♘ 騎士八段','♘ 騎士九段',
-                    '♗ 主教一段','♗ 主教二段','♗ 主教三段','♗ 主教四段','♗ 主教五段','♗ 主教六段','♗ 主教七段','♗ 主教八段','♗ 主教九段',
-                    '♖ 堡壘一段','♖ 堡壘二段','♖ 堡壘三段','♖ 堡壘四段','♖ 堡壘五段','♖ 堡壘六段','♖ 堡壘七段','♖ 堡壘八段','♖ 堡壘九段',
-                    '♕ 國王','♔ 皇後']
         self.rank = ranklist[jd['dacProfile']['rank']]
         self.matches = jd['dacProfile']['matchesPlayed']
         self.candy = jd['dacProfile']['candies']
@@ -46,14 +48,7 @@ class Info:
         hss = hs.text
 
         #JSON
-        jr = json.loads(hss)
-
-        #顯示
-        ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三段','♙ 士兵四段','♙ 士兵五段','♙ 士兵六段','♙ 士兵七段','♙ 士兵八段','♙ 士兵九段',
-                    '♘ 騎士一段','♘ 騎士二段','♘ 騎士三段','♘ 騎士四段','♘ 騎士五段','♘ 騎士六段','♘ 騎士七段','♘ 騎士八段','♘ 騎士九段',
-                    '♗ 主教一段','♗ 主教二段','♗ 主教三段','♗ 主教四段','♗ 主教五段','♗ 主教六段','♗ 主教七段','♗ 主教八段','♗ 主教九段',
-                    '♖ 堡壘一段','♖ 堡壘二段','♖ 堡壘三段','♖ 堡壘四段','♖ 堡壘五段','♖ 堡壘六段','♖ 堡壘七段','♖ 堡壘八段','♖ 堡壘九段',
-                    '♕ 國王','♔ 皇後']
+        jr = json.loads(hss)       
         data = jr
         x = []
         y = []
@@ -131,7 +126,6 @@ async def rank(ctx):
     try:
         await ctx.send("查詢中，請稍等數秒...")      
         discordID = ctx.author.id
-        db = pymysql.connect(host='us-cdbr-iron-east-03.cleardb.net', port=3306, user='b36869a8519140', passwd='8ee251b9', db='heroku_db14e89a7a66a87', charset='utf8')
         cursor = db.cursor()
         sql = 'SELECT steamID FROM player WHERE discordID = "%s";'
         cursor.execute(sql,discordID)  
@@ -162,15 +156,11 @@ async def rank(ctx):
         
 
     
-
-
-
 @bot.command()
 async def bind(ctx , steamIDs):
 
     if(len(steamIDs) == 17): 
-        db = pymysql.connect(host='us-cdbr-iron-east-03.cleardb.net', port=3306, user='b36869a8519140', passwd='8ee251b9', db='heroku_db14e89a7a66a87', charset='utf8')
-
+        
         cursor = db.cursor()
 
         discordID = ctx.author.id
