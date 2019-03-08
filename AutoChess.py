@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from scipy import interpolate
 from scipy.interpolate import interp1d
 import os
+from boto.s3.connection import S3Connection
 
 
 bot = commands.Bot(command_prefix='')
