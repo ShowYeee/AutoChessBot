@@ -123,19 +123,24 @@ async def info(ctx , steamID):
     
 
 @bot.command()
-async def rank(ctx):
+async def rank(ctx , steamIDs):
 
-    try:
-        await ctx.send("查詢中，請稍等數秒...")      
+    await ctx.send("查詢中，請稍等數秒...") 
+    
+    if(steam != null):
         discordID = ctx.author.id
         db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
         cursor = db.cursor()
         sql = 'SELECT steamID FROM player WHERE discordID = "%s";'
         cursor.execute(sql,discordID)  
         rows = [item[0] for item in cursor.fetchall()]
-        steamID = rows[0]
+        steamIDs = rows[0]
         db.commit()
         db.close()
+      
+    steamID = steamIDs
+    
+    try:
         theinfo = Info(steamID)
         x = '- '
         steamurl = 'http://steamcommunity.com/profiles/' + steamID
