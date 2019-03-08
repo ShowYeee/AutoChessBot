@@ -91,7 +91,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     activitys = discord.Game(name = "刀塔自走棋")
-    await bot.change_presence(status = discord.Status.idle,activity = activitys)
+    await bot.change_presence(activity = activitys)
 
 @bot.command()
 async def info(ctx , steamID):
