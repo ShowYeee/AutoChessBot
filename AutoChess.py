@@ -27,7 +27,7 @@ ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三�
 class Info:
     def __init__(self,steamID):
         #取得GET
-          
+        r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
         ress = res.text
 
         #JSON
@@ -111,7 +111,6 @@ async def rank(ctx , steamID=None):
      
     
     try:
-        r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
         theinfo = Info(steamID)
         x = '- '
         steamurl = 'http://steamcommunity.com/profiles/' + steamID
