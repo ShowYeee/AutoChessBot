@@ -97,8 +97,8 @@ async def on_ready():
 @bot.command()
 async def rank(ctx , steamID=None):
 
-    await ctx.send("查詢中，請稍等數秒...") 
-    
+    await ctx.send("由於要更新數據，查詢中請稍等數秒...") 
+    r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
     if(steamID == None):
         discordID = ctx.author.id
         db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
@@ -129,7 +129,6 @@ async def rank(ctx , steamID=None):
         print(file)
         await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")  
-        r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
     except IndexError as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(-d.help)")
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
