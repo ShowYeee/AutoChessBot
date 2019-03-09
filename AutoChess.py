@@ -28,6 +28,7 @@ class Info:
     def __init__(self,steamID):
         #取得GET
         r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
+        res  = requests.get('http://www.autochess-stats.com/backend/api/dacprofiles/'+ steamID)
         ress = res.text
 
         #JSON
