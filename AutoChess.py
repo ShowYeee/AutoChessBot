@@ -27,8 +27,7 @@ ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三�
 class Info:
     def __init__(self,steamID):
         #取得GET
-        res  = requests.get('http://www.autochess-stats.com/backend/api/dacprofiles/'+ steamID)
-        
+          
         ress = res.text
 
         #JSON
@@ -98,7 +97,7 @@ async def on_ready():
 async def rank(ctx , steamID=None):
 
     await ctx.send("由於要更新數據，查詢中請稍等數秒...") 
-    r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
+    
     if(steamID == None):
         discordID = ctx.author.id
         db = pymysql.connect(host=os.environ['host'], port=3306, user=os.environ['user'], passwd=os.environ['password'], db=os.environ['db'], charset='utf8')
@@ -112,6 +111,7 @@ async def rank(ctx , steamID=None):
      
     
     try:
+        r = requests.post('http://www.autochess-stats.com/backend/api/dacprofiles/' + steamID + '/requestfetch/')
         theinfo = Info(steamID)
         x = '- '
         steamurl = 'http://steamcommunity.com/profiles/' + steamID
