@@ -126,10 +126,9 @@ async def rank(ctx , steamID=None):
         await ctx.send(embed=embed)
         theinfo.chart(steamID)
         file = discord.File(steamID + '.png', filename = steamID + '.png')
-        print(file)
         await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")  
-    except IndexError as n:
+    except Exception as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(-d.help)")
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
         
@@ -162,7 +161,7 @@ async def bind(ctx , steamIDs):
 
 
 @bot.command()
-async def Help(ctx):
+async def help(ctx):
     embed = discord.Embed(title="指令大全", color=0xeee657)
     embed.add_field(name="d.info <steamID64>", value="直接查詢玩家", inline=False)
     embed.add_field(name="d.bind <steamID64>", value="綁定自己SteamID64 (查詢ID: https://steamid.io/lookup)", inline=False)
