@@ -163,10 +163,9 @@ async def bind(ctx , steamIDs):
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="指令大全", color=0xeee657)
-    embed.add_field(name="d.info <steamID64>", value="直接查詢玩家", inline=False)
-    embed.add_field(name="d.bind <steamID64>", value="綁定自己SteamID64 (查詢ID: https://steamid.io/lookup)", inline=False)
-    embed.add_field(name="d.myinfo <steamID64>", value="查詢自己牌位(請先用bind綁定)", inline=False)
-
+    embed.add_field(name="rank <steamID64>", value="直接查詢玩家", inline=False)
+    embed.add_field(name="rank", value="查詢自己牌位(請先用bind綁定)", inline=False)
+    embed.add_field(name="bind <steamID64>", value="綁定自己SteamID64 (查詢ID: https://steamid.io/lookup)", inline=False)
     await ctx.send(embed=embed)
 
 bot.run(os.environ['bot_token'])
