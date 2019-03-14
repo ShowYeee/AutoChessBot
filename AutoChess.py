@@ -18,7 +18,7 @@ from socketserver import ThreadingMixIn
 import threading, sys
 import subprocess
 
-
+Handler = SimpleHTTPRequestHandler
 bot = commands.Bot(command_prefix='')
 bot.remove_command('help')
 ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三段','♙ 士兵四段','♙ 士兵五段','♙ 士兵六段','♙ 士兵七段','♙ 士兵八段','♙ 士兵九段',
@@ -33,7 +33,7 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 if __name__ == '__main__':
     server = ThreadedHTTPServer(('0.0.0.0', 8000), Handler)
     server.serve_forever()
-    
+
 class Info:
     def __init__(self,steamID):
         #取得GET
