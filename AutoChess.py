@@ -117,7 +117,7 @@ async def rank(ctx , steamID=None):
         steamurl = 'http://steamcommunity.com/profiles/' + steamID
         mysteam = "["+ theinfo.name +"]("+steamurl+")"
         theinfo.chart(steamID)
-        file = (steamID + '.png', filename = steamID + '.png')
+        file = discord.File(steamID + '.png', filename = steamID + '.png')
         embed = discord.Embed(title = ctx.author.name + " 排位查詢", description = "Steam名稱: " + mysteam, color=0xff0000) 
         embed.set_author(name="刀塔自走棋資料速查", icon_url="http://i.imgur.com/rlx1Kb2.png")
         embed.set_thumbnail(url = theinfo.steamicon)
