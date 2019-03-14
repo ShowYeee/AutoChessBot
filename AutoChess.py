@@ -66,7 +66,7 @@ class Info:
         y.reverse()
         xx = np.array(x)
         yy = np.array(y)
-        plt.figure(figsize=(6,4))
+        plt.figure(figsize=(9,4))
         plt.yticks([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],
         ['Noob','♙ Soldier1','♙ Soldier2','♙ Soldier3','♙ Soldier4','♙ Soldier5','♙ Soldier6','♙ Soldier7','♙ Soldier8','♙ Soldier9',
         '♘ Knight1','♘ Knight2','♘ Knight3','♘ Knight4','♘ Knight5','♘ Knight6','♘ Knight7','♘ Knight8','♘ Knight9',
@@ -74,14 +74,15 @@ class Info:
         '♖ Fortress1','♖ Fortress2','♖ Fortress3','♖ Fortress4','♖ Fortress5','♖ Fortress6','♖ Fortress7','♖ Fortress8','♖ Fortress9',
         '♕ King','♔ Queen'])
         plt.xticks(xx,time)
-        plt.plot(xx,yy, '-',xx, yy,'o')
+        plt.plot(xx,yy, linewidth=2, color='black', marker='o', markerfacecolor='red', markersize=4)
+        #plt.plot(xx,yy, '-',xx, yy,'o')
         plt.xlim([xx.min(),xx.max()])  # x軸邊界
         plt.ylim([yy.min()-1,yy.max()+1])  # y軸邊界
         plt.yticks(fontsize=10)
         plt.xticks(fontsize=8)
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='green', alpha=0.3)
-        plt.savefig(steamID + '.png')
+        plt.savefig(steamID + '.png', bbox_inches='tight')
         
     
 
