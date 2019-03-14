@@ -74,7 +74,7 @@ class Info:
         plt.xticks(xx,time)
         plt.plot(xx,yy, '-',xx, yy,'o')
         plt.xlim([xx.min(),xx.max()])  # x軸邊界
-        plt.ylim([yy.min(),yy.max()])  # y軸邊界
+        plt.ylim([yy.min()-1,yy.max()+1])  # y軸邊界
         plt.yticks(fontsize=10)
         plt.xticks(fontsize=8)
         plt.grid(linestyle='-.') 
