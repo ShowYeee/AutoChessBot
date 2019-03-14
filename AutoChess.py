@@ -30,9 +30,7 @@ ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三�
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
 
-if __name__ == '__main__':
-    server = ThreadedHTTPServer(('0.0.0.0', 8000), Handler)
-    server.serve_forever()
+   
 
 class Info:
     def __init__(self,steamID):
@@ -99,7 +97,9 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    subprocess.Popen('python3 -m thread_server 8000', shell = True, stdout = subprocess.PIPE)
+    server = ThreadedHTTPServer(('0.0.0.0', 8000), Handler)
+    server.serve_forever()
+    subprocess.Popen('python3 -m thread_server 8000', shell = True, stdout = subprocess.PIPE)   
     activitys = discord.Game(name = "刀塔自走棋")
     await bot.change_presence(activity = activitys)
 
