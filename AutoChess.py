@@ -72,7 +72,7 @@ class Info:
         '♘ 騎士1','♘ 騎士2','♘ 騎士3','♘ 騎士4','♘ 騎士5','♘ 騎士6','♘ 騎士7','♘ 騎士8','♘ 騎士9',
         '♗ 主教1','♗ 主教2','♗ 主教3','♗ 主教4','♗ 主教5','♗ 主教6','♗ 主教7','♗ 主教8','♗ 主教9',
         '♖ 堡壘1','♖ 堡壘2','♖ 堡壘3','♖ 堡壘4','♖ 堡壘5','♖ 堡壘6','♖ 堡壘7','♖ 堡壘8','♖ 堡壘9',
-        '♕ 國王','♔ 皇后'],label.set_rotation(30),label.set_horizontalalignment('right'))
+        '♕ 國王','♔ 皇后'])
         plt.xticks(xx,time)
         plt.plot(xx,yy, linewidth=2, color='red', marker='o', markerfacecolor='black', markersize=6)
         #plt.plot(xx,yy, '-',xx, yy,'o')
