@@ -121,7 +121,7 @@ async def rank(ctx , steamID=None):
         theinfo.chart(steamID)
         file = discord.File(steamID + '.png', filename = steamID + '.png')
         
-        CLIENT_ID = os.environ['bot_token']
+        CLIENT_ID = os.environ['imgur_CLIENT_ID']
         PATH = steamID + '.png'
         im = pyimgur.Imgur(CLIENT_ID)
         uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
