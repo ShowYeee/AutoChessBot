@@ -82,6 +82,7 @@ class Info:
         plt.xticks(fontsize=8)
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='gray', alpha=0.2)
+        pl.xticks(rotation=30)
         plt.savefig(steamID + '.png', bbox_inches='tight')
         
     
