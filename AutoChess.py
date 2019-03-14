@@ -125,7 +125,7 @@ async def rank(ctx , steamID=None):
         embed.add_field(name= '⁕ 遊玩場次',  value = x +  str(theinfo.matches), inline=False)
         embed.add_field(name= '⁕ 糖果數量',  value = x +  str(theinfo.candy), inline=False)
         embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
-        #embed.set_image(url= file)
+        embed.set_image(url= 'http://'+ steamID + '.png')
         await ctx.send(embed=embed)
         await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")  
