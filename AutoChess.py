@@ -141,6 +141,7 @@ async def rank(ctx , steamID=None):
     except Exception as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(help)")
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
+        print(n)
         
 
     
