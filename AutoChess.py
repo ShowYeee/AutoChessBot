@@ -73,16 +73,17 @@ class Info:
         '♗ Bishop1','♗ Bishop2','♗ Bishop3','♗ Bishop4','♗ Bishop5','♗ Bishop6','♗ Bishop7','♗ Bishop8','♗ Bishop9',
         '♖ Fortress1','♖ Fortress2','♖ Fortress3','♖ Fortress4','♖ Fortress5','♖ Fortress6','♖ Fortress7','♖ Fortress8','♖ Fortress9',
         '♕ King','♔ Queen'])
-        plt.xticks(xx,time)
         plt.plot(xx,yy, linewidth=2, color='red', marker='o', markerfacecolor='black', markersize=6)
         #plt.plot(xx,yy, '-',xx, yy,'o')
         plt.xlim([xx.min(),xx.max()])  # x軸邊界
         plt.ylim([yy.min()-1,yy.max()+1])  # y軸邊界
+        plt.xticks(xx,time,fontsize=8,rotation=30)
         plt.yticks(fontsize=10)
-        plt.xticks(fontsize=8)
+        plt.xaxis.label.set_color('white')
+        plt.yaxis.label.set_color('white')
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='gray', alpha=0.2)
-        plt.xticks(rotation=30)
+        plt.set_facecolor(54, 57, 63)
         plt.savefig(steamID + '.png', bbox_inches='tight')
         
     
