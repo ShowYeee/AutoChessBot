@@ -66,7 +66,7 @@ class Info:
         y.reverse()
         xx = np.array(x)
         yy = np.array(y)
-        plt.figure(figsize=(8,4))
+        plt.figure(figsize=(6,4))
         plt.yticks([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],
         ['Noob','♙ Soldier1','♙ Soldier2','♙ Soldier3','♙ Soldier4','♙ Soldier5','♙ Soldier6','♙ Soldier7','♙ Soldier8','♙ Soldier9',
         '♘ Knight1','♘ Knight2','♘ Knight3','♘ Knight4','♘ Knight5','♘ Knight6','♘ Knight7','♘ Knight8','♘ Knight9',
@@ -118,14 +118,11 @@ async def rank(ctx , steamID=None):
         x = '- '
         steamurl = 'http://steamcommunity.com/profiles/' + steamID
         mysteam = "["+ theinfo.name +"]("+steamurl+")"
-        theinfo.chart(steamID)
-        file = discord.File(steamID + '.png', filename = steamID + '.png')
-        
+        theinfo.chart(steamID)        
         CLIENT_ID = os.environ['imgur_CLIENT_ID']
         PATH = steamID + '.png'
         im = pyimgur.Imgur(CLIENT_ID)
         uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
-        
         embed = discord.Embed(title = ctx.author.name + " 排位查詢", description = "Steam名稱: " + mysteam, color=0xff0000) 
         embed.set_author(name="刀塔自走棋資料速查", icon_url="http://i.imgur.com/rlx1Kb2.png")
         embed.set_thumbnail(url = theinfo.steamicon)
@@ -135,7 +132,6 @@ async def rank(ctx , steamID=None):
         embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
         embed.set_image(url= uploaded_image.link)
         await ctx.send(embed=embed)
-        await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")",uploaded_image.link)  
     except Exception as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(help)")
