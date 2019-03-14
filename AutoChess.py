@@ -13,6 +13,8 @@ from scipy import interpolate
 from scipy.interpolate import interp1d
 import os
 from boto.s3.connection import S3Connection
+import pyimgur
+
 
 
 bot = commands.Bot(command_prefix='')
@@ -118,6 +120,12 @@ async def rank(ctx , steamID=None):
         mysteam = "["+ theinfo.name +"]("+steamurl+")"
         theinfo.chart(steamID)
         file = discord.File(steamID + '.png', filename = steamID + '.png')
+        
+        CLIENT_ID = os.environ['bot_token']
+        PATH = steamID + '.png'
+        im = pyimgur.Imgur(CLIENT_ID)
+        uploaded_image = im.upload_image(PATH, title="Uploaded with PyImgur")
+        
         embed = discord.Embed(title = ctx.author.name + " 排位查詢", description = "Steam名稱: " + mysteam, color=0xff0000) 
         embed.set_author(name="刀塔自走棋資料速查", icon_url="http://i.imgur.com/rlx1Kb2.png")
         embed.set_thumbnail(url = theinfo.steamicon)
@@ -125,10 +133,10 @@ async def rank(ctx , steamID=None):
         embed.add_field(name= '⁕ 遊玩場次',  value = x +  str(theinfo.matches), inline=False)
         embed.add_field(name= '⁕ 糖果數量',  value = x +  str(theinfo.candy), inline=False)
         embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
-        embed.set_image(url= 'http://'+ steamID + '.png')
+        embed.set_image(url= uploaded_image.link)
         await ctx.send(embed=embed)
         await ctx.send("", file=file)
-        print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")  
+        print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")",uploaded_image.link)  
     except Exception as n:
         await ctx.send("查詢錯誤，請確定有綁定SteamID64(help)")
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Fail")
