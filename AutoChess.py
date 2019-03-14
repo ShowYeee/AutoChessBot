@@ -60,7 +60,7 @@ class Info:
             if(s['newMmrLevel'] != 0):
                 y.append(s['newMmrLevel'])
                 x.append(i)
-                time.append(s['timeFetched'][5:16].replace('T','\n'))
+                time.append(s['timeFetched'][5:11].replace('T','\n'))
                 i += 1
         time.reverse() 
         y.reverse()
@@ -82,6 +82,9 @@ class Info:
         plt.xticks(fontsize=8)
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='gray', alpha=0.2)
+        for label in ax.get_xticklabels():
+          label.set_rotation(30)
+          label.set_horizontalalignment('right')
         plt.savefig(steamID + '.png', bbox_inches='tight')
         
     
