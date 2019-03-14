@@ -91,7 +91,7 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
-    print('------')
+    print('---------------------------------')
     activitys = discord.Game(name = "刀塔自走棋")
     await bot.change_presence(activity = activitys)
 
