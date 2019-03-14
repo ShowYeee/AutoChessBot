@@ -13,10 +13,6 @@ from scipy import interpolate
 from scipy.interpolate import interp1d
 import os
 from boto.s3.connection import S3Connection
-from http.server import HTTPServer, BaseHTTPRequestHandler, SimpleHTTPRequestHandler
-from socketserver import ThreadingMixIn
-import threading, sys
-import subprocess
 
 
 bot = commands.Bot(command_prefix='')
@@ -93,7 +89,6 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    subprocess.Popen('python3 -m thread_server 8000', shell = True, stdout = subprocess.PIPE)
     activitys = discord.Game(name = "刀塔自走棋")
     await bot.change_presence(activity = activitys)
 
@@ -130,7 +125,7 @@ async def rank(ctx , steamID=None):
         embed.add_field(name= '⁕ 遊玩場次',  value = x +  str(theinfo.matches), inline=False)
         embed.add_field(name= '⁕ 糖果數量',  value = x +  str(theinfo.candy), inline=False)
         embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
-        embed.set_image(url = 'http://localhost:8000/local_img.png')
+        #embed.set_image(url= file)
         await ctx.send(embed=embed)
         await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")  
