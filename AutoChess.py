@@ -18,7 +18,7 @@ from socketserver import ThreadingMixIn
 import threading, sys
 import subprocess
 
-Handler = SimpleHTTPRequestHandler
+
 bot = commands.Bot(command_prefix='')
 bot.remove_command('help')
 ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三段','♙ 士兵四段','♙ 士兵五段','♙ 士兵六段','♙ 士兵七段','♙ 士兵八段','♙ 士兵九段',
@@ -27,10 +27,6 @@ ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三�
                     '♖ 堡壘一段','♖ 堡壘二段','♖ 堡壘三段','♖ 堡壘四段','♖ 堡壘五段','♖ 堡壘六段','♖ 堡壘七段','♖ 堡壘八段','♖ 堡壘九段',
                     '♕ 國王','♔ 皇後']
 
-class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
-    """Handle requests in a separate thread."""
-
-   
 
 class Info:
     def __init__(self,steamID):
@@ -97,9 +93,7 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    server = ThreadedHTTPServer(('0.0.0.0', 8000), Handler)
-    server.serve_forever()
-    subprocess.Popen('python3 -m thread_server 8000', shell = True, stdout = subprocess.PIPE)   
+    subprocess.Popen('python3 -m thread_server 8000', shell = True, stdout = subprocess.PIPE)
     activitys = discord.Game(name = "刀塔自走棋")
     await bot.change_presence(activity = activitys)
 
@@ -136,7 +130,7 @@ async def rank(ctx , steamID=None):
         embed.add_field(name= '⁕ 遊玩場次',  value = x +  str(theinfo.matches), inline=False)
         embed.add_field(name= '⁕ 糖果數量',  value = x +  str(theinfo.candy), inline=False)
         embed.add_field(name= '⁕ 信使數量',  value = x +  str(theinfo.couriers), inline=False)
-        embed.set_image(url = 'http://localhost:8000/' + steamID + '.png')
+        embed.set_image(url = 'http://localhost:8000/local_img.png')
         await ctx.send(embed=embed)
         await ctx.send("", file=file)
         print("(",strftime("%Y-%m-%d %H:%M:%S", gmtime()),"):",ctx.author.name,"(",ctx.author.id,"),Success(",steamID,")")  
