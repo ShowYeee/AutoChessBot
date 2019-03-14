@@ -5,7 +5,6 @@ bs4 == 0.0.1
 discord == 0.16.12
 matplotlib == 3.0.3
 numpy == 1.16.2
-PyMySQ == 0.9.3
 requests == 2.21.0
 scipy == 1.2.1
 pyimgur == 0.3.1
