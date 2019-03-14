@@ -27,7 +27,13 @@ ranklist = ['迷之棋手','♙ 士兵一段','♙ 士兵二段','♙ 士兵三�
                     '♖ 堡壘一段','♖ 堡壘二段','♖ 堡壘三段','♖ 堡壘四段','♖ 堡壘五段','♖ 堡壘六段','♖ 堡壘七段','♖ 堡壘八段','♖ 堡壘九段',
                     '♕ 國王','♔ 皇後']
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
 
+if __name__ == '__main__':
+    server = ThreadedHTTPServer(('0.0.0.0', 8000), Handler)
+    server.serve_forever()
+    
 class Info:
     def __init__(self,steamID):
         #取得GET
