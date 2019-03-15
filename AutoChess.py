@@ -76,7 +76,7 @@ class Info:
         '♗ Bishop1','♗ Bishop2','♗ Bishop3','♗ Bishop4','♗ Bishop5','♗ Bishop6','♗ Bishop7','♗ Bishop8','♗ Bishop9',
         '♖ Fortress1','♖ Fortress2','♖ Fortress3','♖ Fortress4','♖ Fortress5','♖ Fortress6','♖ Fortress7','♖ Fortress8','♖ Fortress9',
         '♕ King','♔ Queen'])
-        plt.plot(xx,yy, linewidth=2, color='red', marker='o', markerfacecolor='black', markersize=6)
+        plt.plot(xx,yy, linewidth=3, color='red', marker='o', markerfacecolor='white', markersize=9)
         #plt.plot(xx,yy, '-',xx, yy,'o')
         plt.xlim([xx.min(),xx.max()])  # x軸邊界
         plt.ylim([yy.min()-1,yy.max()+1])  # y軸邊界
