@@ -81,6 +81,7 @@ class Info:
         plt.yticks(fontsize=10,color='white')
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='gray', alpha=0.2)
+        plt.rcParams['axes.facecolor'] = 'black'
         plt.savefig(steamID + '.png', bbox_inches='tight',facecolor='black')
         
     
