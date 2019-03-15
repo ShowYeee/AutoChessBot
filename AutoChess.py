@@ -77,10 +77,8 @@ class Info:
         #plt.plot(xx,yy, '-',xx, yy,'o')
         plt.xlim([xx.min(),xx.max()])  # x軸邊界
         plt.ylim([yy.min()-1,yy.max()+1])  # y軸邊界
-        plt.xticks(xx,time,fontsize=8,rotation=30)
-        plt.yticks(fontsize=10)
-        plt.xticks.label.set_color('white')
-        plt.yticks.label.set_color('white')
+        plt.xticks(xx,time,fontsize=8,rotation=30,color='white')
+        plt.yticks(fontsize=10,color='white')
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='gray', alpha=0.2)
         plt.set_facecolor(54, 57, 63)
