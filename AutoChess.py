@@ -67,7 +67,6 @@ class Info:
         xx = np.array(x)
         yy = np.array(y)
         plt.figure(figsize=(9,4))
-        plt.subplot(axisbg='#444444')
         plt.yticks([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38],
         ['Noob','♙ Soldier1','♙ Soldier2','♙ Soldier3','♙ Soldier4','♙ Soldier5','♙ Soldier6','♙ Soldier7','♙ Soldier8','♙ Soldier9',
         '♘ Knight1','♘ Knight2','♘ Knight3','♘ Knight4','♘ Knight5','♘ Knight6','♘ Knight7','♘ Knight8','♘ Knight9',
@@ -82,8 +81,7 @@ class Info:
         plt.yticks(fontsize=10,color='white')
         plt.grid(linestyle='-.') 
         plt.fill_between(xx, yy, interpolate=True, color='gray', alpha=0.2)
-        
-        plt.savefig(steamID + '.png', bbox_inches='tight')
+        plt.savefig(steamID + '.png', bbox_inches='tight',facecolor='black')
         
     
 
