@@ -1,4 +1,4 @@
-git+https://github.com/Rapptz/discord.py@rewrite
+git+https://github.com/Rapptz/discord.py
 boto == 2.49.0
 beautifulsoup4 ==  4.7.1
 bs4 == 0.0.1
