@@ -1,4 +1,4 @@
--e git://github.com/Rapptz/discord.py@rewrite#egg=discord.py
+-e git://github.com/Rapptz/discord.py@#egg=discord.py
 boto == 2.49.0
 beautifulsoup4 ==  4.7.1
 bs4 == 0.0.1
